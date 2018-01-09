@@ -1,0 +1,34 @@
+{
+  "models" : {
+    "dstc_single": {
+      "path": "/storage/work/iamplus/pytorch-seq2seq/checkpoints/dstc_single",
+      "description": "DSTC Single Utterance as Context",
+      "mode" : "single"
+    },
+     "dstc_3": {
+      "path": "/storage/work/iamplus/pytorch-seq2seq/checkpoints/dstc3",
+      "description": "DSTC Three Utterance Window as Context",
+      "mode" : "join"
+    },
+    "dstc_hierarchial": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/dstc_hierarchial",
+      "description": "DSTC with Hierarchial Encoder-Decoder",
+      "mode" : "hierarchial"
+    },
+    "cornell": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/sliding_window",
+      "description": "Cornell Corpus with Sliding window Context",
+      "mode" : "single"
+    },
+    "ubuntu": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/ubuntu_single",
+      "description": "Ubuntu Dialog Corpus",
+      "mode" : "single"
+    },
+    "ubuntu_hierarchial": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/ubuntu_hierarchial",
+      "description": "Ubuntu Dialog Corpus (Hierarchial)",
+      "mode" : "hierarchial"
+    }
+  }
+}

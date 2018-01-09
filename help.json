@@ -1,0 +1,5 @@
+{
+  "/json" : "Lists all the available models",
+  "/i/<model>/json" : "Submit JSON POST input to the model <model>. This should be of the form {\"input\":[\"List of inputs (length one if non hierarchial)\"]}"
+
+}
