@@ -11,14 +11,36 @@
       "mode" : "join"
     },
     "dstc_hierarchial": {
-      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/dstc_hierarchial",
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/dstc_hierarchial_2",
       "description": "DSTC with Hierarchial Encoder-Decoder",
       "mode" : "hierarchial"
     },
     "cornell": {
       "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/sliding_window",
       "description": "Cornell Corpus with Sliding window Context",
+      "mode" : "single"	
+    },
+    "cornellwv": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/cornellwv",
+      "description": "Cornell Corpus with Sliding window Context (Word2Vec)",
+      "mode" : "single",
+      "word_vectors": "google"
+    },
+    "cornellwvh": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/cornellwvh",
+      "description": "Cornell Corpus Hierarchical (Word2Vec)",
+      "mode" : "hierarchial",
+      "word_vectors": "google"
+    },      
+    "subtle": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/subtle",
+      "description": "Subtle Corpus with Sliding window Context",
       "mode" : "single"
+    },
+    "cornellh": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/cornellhnew",
+      "description": "Cornell Corpus (Hierarchical)",
+      "mode" : "hierarchial"
     },
     "ubuntu": {
       "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/ubuntu_single",
@@ -26,9 +48,14 @@
       "mode" : "single"
     },
     "ubuntu_hierarchial": {
-      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/ubuntu_hierarchial",
+      "path" : "remote::ubuntu_hierarchical",
       "description": "Ubuntu Dialog Corpus (Hierarchial)",
       "mode" : "hierarchial"
+    },
+    "fb": {
+      "path" : "/storage/work/iamplus/pytorch-seq2seq/checkpoints/fb",
+      "description": "Facebook Chat Data(Single)",
+      "mode" : "single"
     }
   }
 }

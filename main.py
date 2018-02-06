@@ -4,16 +4,44 @@ import os
 import json
 import datetime
 from predictions import *
+from gensim.models.keyedvectors import KeyedVectors
 
 
 MODELS_FILE = './models.json'
+VECTORS_FILE = './word_vectors.json'
+REMOTE_FILE = './remote_details.json'
 HELP_FILE = './help.json'
+
+do_load_vects = sys.argv[1]
+if do_load_vects == 'load_vects':
+    do_load_vects = True
+else:
+    do_load_vects = False
+
+def load_vectors_file(path, dim_size):
+    print("Getting word vectors from", path)
+    DIM_SIZE = dim_size
+    word_vectors = KeyedVectors.load_word2vec_format(path, binary=True, unicode_errors='ignore')
+    word_vectors.dim_size = dim_size
+    print("Got the word vectors from", path)
+    return word_vectors
+    
+def load_vects():
+    wvmodels_list = json.loads(open(VECTORS_FILE).read())
+    wvmodels_list = wvmodels_list['models']
+    vectors = {}
+    for model, details in wvmodels_list.items():        
+        vectors[model] = load_vectors_file(details['path'], details['emsize'])
+    return vectors
 
 def load_models():
     return json.loads(open(MODELS_FILE).read())
 
 MODELS = load_models()
-
+REMOTE = json.loads(open(REMOTE_FILE).read())
+VECTORS = None
+if do_load_vects:
+    VECTORS = load_vects()
 
 def predict(model_name, input_text):
     model_mode = MODELS['models'][model_name]['mode']
@@ -25,8 +53,20 @@ def predict(model_name, input_text):
     elif model_mode == "hierarchial":
         hierarchial = True
     print(input_text)
-    output = predict_with_checkpoint(MODELS['models'][model_name]['path'], input_text, hierarchial)
-    return ' '.join(output)
+    checkpoint_path = MODELS['models'][model_name]['path']
+    if 'remote::' in checkpoint_path:
+        function = remote_predict
+    else:
+        function = predict_with_checkpoint
+
+
+    word_vectors = None
+    if 'word_vectors' in MODELS['models'][model_name]:
+        word_vectors = MODELS['models'][model_name]['word_vectors']
+        word_vectors = VECTORS[word_vectors]
+        
+    output = function(checkpoint_path, input_text, hierarchial, REMOTE, word_vectors)
+    return output
 
 @route('/json')
 def index_json():

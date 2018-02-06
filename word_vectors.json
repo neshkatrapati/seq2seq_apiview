@@ -1,0 +1,9 @@
+{
+  "models" : {
+    "google": {
+	"path": "/storage/work/research/GoogleNews-vectors-negative300.bin",
+	"description": "Google 300",
+	"emsize" : 300
+    }
+  }
+}
